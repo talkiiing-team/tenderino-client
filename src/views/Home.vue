@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-between h-full pt-8">
+  <div class="flex flex-col justify-between h-full w-full pt-8">
     <template v-if="true">
       <EmitterHome v-if="role === roles.emitter" />
       <ValidatorHome v-if="role === roles.validator" />
@@ -9,7 +9,7 @@
     </template>
     <footer class="h-auto min-w-max flex flex-row items-center justify-start
     border-t border-black">
-      <p class="m-4 text-2xl">
+      <p class="m-4 text-md">
         made with love by /talkiiing in {{ new Date().getFullYear() }}
       </p>
     </footer>

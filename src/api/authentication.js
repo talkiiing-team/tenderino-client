@@ -2,16 +2,17 @@ import { ref } from 'vue';
 import Axios from 'axios';
 
 export const roles = {
-  unsigned: 0,
-  emitter: 1,
-  valiadtor: 2,
-  administrator: 3,
+  unsigned: 'unsigned',
+  emitter: 'emitter',
+  valiadtor: 'validator',
+  administrator: 'administrator',
 };
 
 export const authenticated = ref(false);
 export const role = ref(roles.unsigned);
 
 export const signIn = async ({ email, password }) => {
+  console.log(email, password);
   try {
     const response = await Axios.post('/authentication', {
       strategy: 'local',

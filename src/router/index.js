@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import SignIn from '@/views/SignIn.vue';
+import TenderForm from '@/components/TenderForm.vue';
 
 const routes = [
   {
@@ -12,6 +13,10 @@ const routes = [
     path: '/signin',
     name: 'SignIn',
     component: SignIn,
+  },
+  {
+    path: '/createtender',
+    component: TenderForm,
   },
 ];
 

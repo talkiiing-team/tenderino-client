@@ -24,7 +24,7 @@
 <script>
 // import { useRouter } from 'vue-router';
 import { reactive, ref } from 'vue';
-// import { signIn } from '@/api/authentication';
+import { signIn } from '@/api/authentication';
 
 import VPopUp from '@/components/VPopUp.vue';
 
@@ -44,7 +44,7 @@ export default {
     });
 
     const login = async () => {
-      // const success = await signIn(creditionals);
+      await signIn({ email, password });
       // if (success) router.push('/');
       // else {
       popup.message = 'Ошибка входа';
