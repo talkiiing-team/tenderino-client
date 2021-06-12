@@ -1,56 +1,34 @@
 <template>
-  <div class="flex flex-col justify-start items-center px-8 p-4">
-    <h1 class="mb-4">Создать тендер</h1>
-    <div class="w-full border-black border rounded-md p-4 shadow-lg">
-      <div class="flex flex-col justify-between items-start
-        mb-4">
-        <p>Наименование</p>
-        <input v-model="product.name"
-          class="w-full" placeholder="Введите название продукта" />
-      </div>
-      <div class="flex flex-col justify-between items-start
-        mb-4">
-        <p>Вид продукции</p>
-        <VueMultiselect v-model="product.type"
-          :options="productTypes">
-        </VueMultiselect>
-      </div>
-      <div class="flex flex-col justify-between items-start
-        mb-4">
-        <p>Штрихкод</p>
-        <input v-model="product.barcode"
-          class="w-full" placeholder="Введите штрихкод" />
-      </div>
-      <div class="flex flex-col justify-between items-start
-        mb-4">
-        <p>Модель</p>
-        <input v-model="product.model"
-          class="w-full" placeholder="Введите модель продукта" />
-      </div>
-      <div class="flex flex-row justify-between items-start">
-        <div class="flex flex-col justify-between items-start w-full pr-4">
-          <p>Производитель</p>
-          <input v-model="product.manufacturer"
-            class="w-full" placeholder="Введите производителя" />
-        </div>
-        <div class="flex flex-col justify-between items-start w-full">
-          <p>SKU</p>
-          <input v-model="product.sku"
-            class="w-full" placeholder="Введите SKU" />
-        </div>
-      </div>
-    </div>
-  </div>
+  <form class="w-full flex flex-col rounded-md p-4 shadow-lg gap-y-4">
+    <VInput v-model="product.name"
+      class="w-full" placeholder="Название продукта" />
+    <VSelect v-model="product.type"
+      :options="productTypes"
+      placeholder="Тип продукта" />
+    <VInput v-model="product.barcode"
+      class="w-full" placeholder="Штрихкод" />
+    <VInput v-model="product.model"
+      class="w-full" placeholder="Модель продукта" />
+    <VInput v-model="product.manufacturer"
+      class="w-full" placeholder="Производитель" />
+    <VInput v-model="product.sku"
+      class="w-full" placeholder="SKU" />
+    <VButton tag="button">Я кнопка</VButton>
+  </form>
 </template>
 
 <script>
 import { reactive } from 'vue';
-import VueMultiselect from 'vue-multiselect';
+import VInput from '@/components/VInput.vue';
+import VSelect from '@/components/VSelect.vue';
+import VButton from '@/components/VButton.vue';
 
 export default {
   name: 'TenderForm',
   components: {
-    VueMultiselect,
+    VButton,
+    VSelect,
+    VInput,
   },
   setup() {
     const product = reactive({
@@ -63,8 +41,8 @@ export default {
       manufacturerOrigin: '',
     });
     const productTypes = [
-      { value: 'a', name: 'aboba' },
-      { value: 'b', name: 'biba' },
+      { display: 'Абоба', value: 'aboba' },
+      { display: 'Амогус', value: 'amogus' },
     ];
     return {
       productTypes,
