@@ -1,10 +1,9 @@
 <template>
-  <router-view/>
+  <div></div>
 </template>
 
 <script>
 export default {
-  setup() {
-  },
+
 };
 </script>
