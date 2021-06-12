@@ -1,8 +1,9 @@
 <template>
   <div class="flex flex-col justify-between h-full w-full pt-8">
     <template v-if="true">
-      <EmitterHome v-if="role === roles.emitter" />
-      <ValidatorHome v-if="role === roles.validator" />
+      <EmitterHome />
+      <ValidatorHome />
+      <TenderForm />
     </template>
     <template v-else>
       <UnsignedHome />
@@ -23,10 +24,12 @@ import { roles } from '@/api/authentication';
 import EmitterHome from '@/components/home/emitter/EmitterHome.vue';
 import ValidatorHome from '@/components/home/validator/ValidatorHome.vue';
 import UnsignedHome from '@/components/home/unsigned/UnsignedHome.vue';
+import TenderForm from '@/components/TenderForm.vue';
 
 export default {
   name: 'Home',
   components: {
+    TenderForm,
     EmitterHome,
     ValidatorHome,
     UnsignedHome,
