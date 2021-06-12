@@ -19,8 +19,10 @@ export default {
   setup() {
     const items = [
       { id: 1, name: 'aboba', status: 'pending' },
-      { id: 2, name: 'noutbuk hp 16 gigov', status: 'rejected' },
-      { id: 3, name: 'vitalya', status: 'accepted' },
+      { id: 2, name: 'noutbuk hp 16 gigov', status: 'moderation' },
+      { id: 3, name: 'vitalya', status: 'request-info' },
+      { id: 4, name: 'pasha', status: 'rejected' },
+      { id: 4, name: 'hello', status: 'accepted' },
     ];
     return {
       items,

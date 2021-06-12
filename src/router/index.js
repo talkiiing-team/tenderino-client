@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
-import SignIn from '@/views/SignIn.vue';
-import TenderForm from '@/components/TenderForm.vue';
+import EmitterHome from '@/views/EmitterHome.vue';
+import EmitterTender from '@/views/EmitterTender.vue';
 
 const routes = [
   {
@@ -10,13 +10,12 @@ const routes = [
     component: Home,
   },
   {
-    path: '/signin',
-    name: 'SignIn',
-    component: SignIn,
+    path: '/emitter',
+    component: EmitterHome,
   },
   {
-    path: '/createtender',
-    component: TenderForm,
+    path: '/emitter/tender/:id',
+    component: EmitterTender,
   },
 ];
 

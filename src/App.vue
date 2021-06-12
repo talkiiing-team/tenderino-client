@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full max-w-3xl container">
-    <router-view/>
+  <div class="w-full h-full max-w-3xl container px-3">
+    <router-view />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-between items-center mb-10 w-full">
+  <div class="flex flex-col justify-between items-center mb-10 w-full py-32">
     <h2 class="mb-4">Ваши тендеры</h2>
     <TenderList />
     <h3 class="mt-14 mb-4">Создать тендер</h3>

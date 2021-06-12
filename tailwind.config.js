@@ -10,6 +10,9 @@ module.exports = {
         'inner-md': 'inset 3px 3px 3px rgba(0, 0, 0, 0.06), inset -2px -1px 3px rgba(0, 0, 0, 0.06)',
         'inner-lg': 'inset 4px 4px 3px rgba(0, 0, 0, 0.1), inset -3px -2px 3px rgba(0, 0, 0, 0.06)',
       },
+      gridTemplateColumns: {
+        table: '10rem 1fr',
+      },
     },
   },
   variants: {
