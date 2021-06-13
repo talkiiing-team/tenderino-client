@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
-import EmitterHome from '@/views/EmitterHome.vue';
+import TendersHome from '@/views/TendersHome.vue';
 import Tender from '@/views/Tender.vue';
-import ValidatorHome from '@/views/ValidatorHome.vue';
 
 const routes = [
   {
@@ -12,7 +11,7 @@ const routes = [
   },
   {
     path: '/emitter',
-    component: EmitterHome,
+    component: TendersHome,
   },
   {
     path: '/emitter/tender/:id',
@@ -20,7 +19,7 @@ const routes = [
   },
   {
     path: '/validator',
-    component: ValidatorHome,
+    component: TendersHome,
   },
   {
     path: '/validator/tender/:id',
