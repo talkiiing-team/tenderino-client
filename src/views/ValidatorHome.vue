@@ -2,20 +2,16 @@
   <div class="flex flex-col justify-between items-center mb-10 w-full py-32">
     <h2 class="mb-4">Ваши тендеры</h2>
     <TenderList :items="tenders" />
-    <h3 class="mt-14 mb-4">Создать тендер</h3>
-    <TenderForm />
   </div>
 </template>
 
 <script>
-import TenderForm from '@/components/TenderForm.vue';
 import TenderList from '@/components/TenderList.vue';
 
 export default {
-  name: 'EmitterHome',
+  name: 'ValidatorHome',
   components: {
     TenderList,
-    TenderForm,
   },
   setup() {
     const tenders = [
@@ -24,7 +20,7 @@ export default {
       { id: 3, name: 'vitalya', status: 'request-info' },
       { id: 4, name: 'pasha', status: 'rejected' },
       { id: 4, name: 'hello', status: 'accepted' },
-    ];
+    ].filter((i) => i.status === 'moderation');
     return {
       tenders,
     };

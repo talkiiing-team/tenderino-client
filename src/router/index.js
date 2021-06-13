@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import EmitterHome from '@/views/EmitterHome.vue';
-import EmitterTender from '@/views/EmitterTender.vue';
+import Tender from '@/views/Tender.vue';
+import ValidatorHome from '@/views/ValidatorHome.vue';
 
 const routes = [
   {
@@ -15,7 +16,15 @@ const routes = [
   },
   {
     path: '/emitter/tender/:id',
-    component: EmitterTender,
+    component: Tender,
+  },
+  {
+    path: '/validator',
+    component: ValidatorHome,
+  },
+  {
+    path: '/validator/tender/:id',
+    component: Tender,
   },
 ];
 

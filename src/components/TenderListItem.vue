@@ -6,7 +6,7 @@
       text-black
     "
     :class="background"
-    :to="`/emitter/tender/${tenderInfo.id}`"
+    :to="`${path}/tender/${tenderInfo.id}`"
   >
     <div class="flex flex-row w-full justify-between">
       <p> {{ tenderInfo.name }}</p>
@@ -18,6 +18,7 @@
 
 <script>
 import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'TenderListItem',
@@ -27,6 +28,10 @@ export default {
     },
   },
   setup(props) {
+    // const route = useRoute();
+    const { path } = useRoute();
+    console.log(path);
+
     const background = computed(() => ({
       pending: 'border-blue-200 hover:text-blue-200',
       rejected: 'border-red-200 hover:text-red-200',
@@ -44,6 +49,7 @@ export default {
     return {
       background,
       status,
+      path,
     };
   },
 };
