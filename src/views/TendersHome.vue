@@ -10,9 +10,8 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import Axios from 'axios';
+import { tenders, fetchTenders } from '@/api/index';
 import TenderForm from '@/components/TenderForm.vue';
 import TenderList from '@/components/TenderList.vue';
 
@@ -26,16 +25,7 @@ export default {
     const { path } = useRoute();
     const emitting = path.includes('emitter');
 
-    const tenders = ref([
-      { id: 1, name: 'aboba', status: 'pending' },
-      { id: 2, name: 'noutbuk hp 16 gigov', status: 'moderation' },
-      { id: 3, name: 'vitalya', status: 'request-info' },
-      { id: 4, name: 'pasha', status: 'rejected' },
-      { id: 4, name: 'hello', status: 'accepted' },
-    ]);
-
-    Axios.get('/tickets')
-      .then((res) => { tenders.value = res.data.data; });
+    fetchTenders();
 
     return {
       tenders,

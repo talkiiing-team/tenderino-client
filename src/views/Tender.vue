@@ -44,8 +44,9 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { tenders, fetchTenders } from '@/api/index';
 import Paragraph from '@/components/Paragraph.vue';
 import VButton from '@/components/VButton.vue';
 
@@ -56,42 +57,21 @@ export default {
     VButton,
   },
   setup() {
-    const { path } = useRoute();
-    const validating = path.includes('validator');
+    const validating = useRoute().path.includes('validator');
+    const { id } = useRoute().params.id;
 
-    const tender = {
-      id: 1,
-      name: 'Шлёпа',
-      status: 'rejected',
-      reason: {
-        photo: 'Изображение содержит QR-код',
-        description: null,
-        details: null,
-      },
-      image: 'https://pbs.twimg.com/media/E167M0tWQAgC23h?format=jpg&name=medium',
-      class: 'Aboba class',
-      description: 'Нуууу что тут сказать... Большой русский кот!',
-      type: 'Aboba type',
-      category: 'Aboba category',
-      metric: 'шт',
-      details: [
-        {
-          name: 'Вес',
-          value: '45',
-          metric: 'кг',
-        },
-        {
-          name: 'Вес',
-          value: '45',
-          metric: 'кг',
-        },
-        {
-          name: 'Вес',
-          value: '45',
-          metric: 'кг',
-        },
-      ],
-    };
+    console.log(tenders.value);
+
+    // eslint-disable-next-line no-underscore-dangle
+    const tender = tenders.value.find((i) => i._id === id);
+    // const tender = tenders.value[0];
+    console.log(tender);
+
+    onMounted(() => {
+      fetchTenders();
+    });
+
+    // console.log(tenders.find((i) => i._id === id));
 
     const background = computed(() => tender && ({
       pending: 'border-blue-200',

@@ -6,7 +6,7 @@
       text-black
     "
     :class="background"
-    :to="`${path}/tender/${tenderInfo.id}`"
+    :to="`${path}/tender/${tenderInfo._id}`"
   >
     <div class="flex flex-row w-full justify-between">
       <p> {{ tenderInfo.name }}</p>
@@ -30,7 +30,6 @@ export default {
   setup(props) {
     // const route = useRoute();
     const { path } = useRoute();
-    console.log(path);
 
     const background = computed(() => ({
       pending: 'border-blue-200 hover:text-blue-200',
