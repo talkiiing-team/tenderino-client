@@ -30,6 +30,8 @@ export default {
   setup(props) {
     // const route = useRoute();
     const { path } = useRoute();
+    // console.log(path[path.length - 1].replace('/', ''));
+    // console.log(path);
 
     const background = computed(() => ({
       pending: 'border-blue-200 hover:text-blue-200',

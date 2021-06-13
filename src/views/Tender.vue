@@ -3,18 +3,21 @@
     <h1 class="pb-4">Информация о тендере</h1>
     <h3>{{ `${tender.name} (${tender.metric})` }}</h3>
     <p class="mb-3 text-gray-400">{{ `${tender.category}` }}</p>
-    <img class="w-full max-w-md h-72 object-cover mb-2" :src="tender.image">
+    <img class="w-full max-w-md object-cover mb-2"
+      :src="tender.imagePrepared?tender.imagePrepared:tender.image"
+      :class="tender.imagePrepared?'':'h-72'">
 
     <Paragraph v-if="tender.reason && tender.reason.photo" class="mb-2">
       {{ tender.reason.photo }}
     </Paragraph>
 
-    <p>{{ tender.description }}</p>
+    <p v-html="highlightedDescription"></p>
 
     <!--  Table  -->
-    <div class="flex flex-col w-full mt-4 divide-y gap-y-2">
+    <div class="flex flex-col w-full mt-4 divide-y gap-y-2"
+      v-if="tender.details.length > 0">
       <div class="w-full grid grid-cols-table text-gray-400 font-medium">
-        <div>Харкатеристика</div>
+        <div>Характеристика</div>
         <div>Значение</div>
       </div>
       <div
@@ -69,6 +72,13 @@ export default {
       fetchTenders();
     });
 
+    const highlightedDescription = computed(() => {
+      if (tender.censorita) {
+        return tender.description.split(/[\s,.!?:]/).map((v) => (tender.censorita.includes(v) ? `<span class="text-red-400 font-bold">${v}</span>` : v)).join(' ');
+      }
+      return tender.description;
+    });
+
     // console.log(tenders.find((i) => i._id === id));
 
     const background = computed(() => tender && ({
@@ -88,6 +98,7 @@ export default {
       validating,
       validate,
       reject,
+      highlightedDescription,
     };
   },
 };

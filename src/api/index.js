@@ -70,10 +70,9 @@ export const tenders = ref([
 
 export const fetchTenders = async () => {
   const res = await instance.get('/tickets');
-  tenders.value = res.data.data;
+  tenders.value = res.data;
 };
 
 export const pushTender = async (tender) => {
-  const res = await instance.post('/tickets', tender);
-  console.log(res.data);
+  await instance.post('/tickets', tender);
 };
