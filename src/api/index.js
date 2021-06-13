@@ -1,5 +1,9 @@
 import { ref } from 'vue';
-import Axios from 'axios';
+import axios from 'axios';
+
+const instance = axios.create({
+  baseURL: process.env.VUE_APP_BACKEND_URL,
+});
 
 export const tenders = ref([
   {
@@ -65,6 +69,11 @@ export const tenders = ref([
 ]);
 
 export const fetchTenders = async () => {
-  const res = await Axios.get('/tickets');
+  const res = await instance.get('/tickets');
   tenders.value = res.data.data;
+};
+
+export const createTender = async (tender) => {
+  const res = await instance.post('/ticket', tender);
+  return res;
 };

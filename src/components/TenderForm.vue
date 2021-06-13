@@ -1,5 +1,8 @@
 <template>
-  <form class="w-full flex flex-col rounded-md p-4 shadow-lg gap-y-4">
+  <form
+    @submit.prevent="submit"
+    class="w-full flex flex-col rounded-md p-4 shadow-lg gap-y-4"
+  >
     <VImageInput v-model="product.image" />
     <VInput v-model="product.name"
       placeholder="Название продукта" />
@@ -52,6 +55,7 @@ import VSelect from '@/components/VSelect.vue';
 import VButton from '@/components/VButton.vue';
 import VImageInput from '@/components/VImageInput.vue';
 import VTextArea from '@/components/VTextArea.vue';
+import { createTender } from '../api';
 
 export default {
   name: 'TenderForm',
@@ -82,10 +86,12 @@ export default {
       metric: '',
       value: '',
     });
+    const submit = () => createTender(product);
     return {
       categories,
       product,
       addDetail,
+      submit,
     };
   },
 };
