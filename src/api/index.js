@@ -68,3 +68,8 @@ export const fetchTenders = async () => {
   const res = await Axios.get('/tickets');
   tenders.value = res.data.data;
 };
+
+export const pushTender = async (tender) => {
+  const res = await Axios.post('/tickets', tender);
+  console.log(res.data);
+};

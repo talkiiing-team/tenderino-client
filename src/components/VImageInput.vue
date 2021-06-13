@@ -1,39 +1,49 @@
 <template>
-  <div
-    class="
-      w-full h-56 border-dashed border-2
-      group transition-all duration-300
-      flex items-center justify-center
-    "
-    :class="{
-      'border-blue-300': isDragging,
-      'border-gray-300': !isDragging && !wrongFile,
-      'border-red-300': !isDragging && wrongFile,
-    }"
-    @dragover.prevent="dragOver"
-    @dragleave.prevent="dragLeave"
-    @drop.prevent="drop($event)">
+  <div class="relative flex flex-col justify-start items-start">
+    <XIcon v-if="modelValue" class="absolute top-3 left-3 z-10 right w-8 h-8 rounded-md shadow-md
+    text-black bg-white p-1"
+      @click="clear"/>
+    <div
+      class="
+        w-full h-56 border-dashed border-2
+        group transition-all duration-300
+        flex items-center justify-center
+      "
+      :class="{
+        'border-blue-300': isDragging,
+        'border-gray-300': !isDragging && !wrongFile,
+        'border-red-300': !isDragging && wrongFile,
+      }"
+      @dragover.prevent="dragOver"
+      @dragleave.prevent="dragLeave"
+      @drop.prevent="drop($event)">
 
-    <img v-if="modelValue" class="w-full h-full object-cover" :src="modelValue" />
-    <div v-if="isDragging || wrongFile || !modelValue" class="
-      select-none text-gray-400 group-hover:text-blue-400 transition-all duration-300
-    ">
-      <p
-        class="text-red-300"
-        v-if="wrongFile && !isDragging">Неверный тип файла</p>
-      <p v-if="!modelValue && !isDragging && !wrongFile">Переместите фото сюда</p>
-      <p
-        class="text-blue-400"
-        v-if="!modelValue && isDragging"
-      >Теперь отпускайте</p>
+      <img v-if="modelValue" class="w-full h-full object-cover" :src="modelValue" />
+      <div v-if="isDragging || wrongFile || !modelValue" class="
+        select-none text-gray-400 group-hover:text-blue-400 transition-all duration-300
+      ">
+        <p
+          class="text-red-300"
+          v-if="wrongFile && !isDragging">Неверный тип файла</p>
+        <p v-if="!modelValue && !isDragging && !wrongFile">Переместите фото сюда</p>
+        <p
+          class="text-blue-400"
+          v-if="!modelValue && isDragging"
+        >Теперь отпускайте</p>
+      </div>
+
     </div>
-
   </div>
 </template>
 
 <script>
+import XIcon from '@heroicons/vue/outline/XIcon';
+
 export default {
   name: 'DropAnImage',
+  components: {
+    XIcon,
+  },
   data() {
     return {
       isDragging: false,
@@ -74,6 +84,9 @@ export default {
     },
     onRequestUploadFiles() {
 
+    },
+    clear() {
+      this.$emit('update:modelValue', '');
     },
   },
 };

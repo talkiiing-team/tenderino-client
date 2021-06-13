@@ -2,7 +2,7 @@
   <div v-if="tender" class="py-8  ">
     <h1 class="pb-4">Информация о тендере</h1>
     <h3>{{ `${tender.name} (${tender.metric})` }}</h3>
-    <p class="mb-3 text-gray-400">{{ `${tender.class}, ${tender.category}` }}</p>
+    <p class="mb-3 text-gray-400">{{ `${tender.category}` }}</p>
     <img class="w-full max-w-md h-72 object-cover mb-2" :src="tender.image">
 
     <Paragraph v-if="tender.reason && tender.reason.photo" class="mb-2">
@@ -18,12 +18,12 @@
         <div>Значение</div>
       </div>
       <div
-        v-for="{ name, value, metric } in tender.details"
+        v-for="{ name, value, unitCode } in tender.details"
         :key="name"
         class="w-full grid grid-cols-table"
       >
         <div>{{ name }}</div>
-        <div>{{ `${value} ${metric}` }}</div>
+        <div>{{ `${value} ${unitCode?unitCode:''}` }}</div>
       </div>
     </div>
     <div v-if="validating"
@@ -57,15 +57,13 @@ export default {
     VButton,
   },
   setup() {
-    const validating = useRoute().path.includes('validator');
-    const { id } = useRoute().params.id;
+    const route = useRoute();
 
-    console.log(tenders.value);
+    const validating = route.path.includes('validator');
+    const { id } = route.params;
 
     // eslint-disable-next-line no-underscore-dangle
     const tender = tenders.value.find((i) => i._id === id);
-    // const tender = tenders.value[0];
-    console.log(tender);
 
     onMounted(() => {
       fetchTenders();

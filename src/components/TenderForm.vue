@@ -1,5 +1,5 @@
 <template>
-  <form class="w-full flex flex-col rounded-md p-4 shadow-lg gap-y-4">
+  <form @submit.prevent="submit()" class="w-full flex flex-col rounded-md p-4 shadow-lg gap-y-4">
     <VImageInput v-model="product.image" />
     <VInput v-model="product.name"
       placeholder="Название продукта" />
@@ -47,6 +47,7 @@
 <script>
 import { reactive } from 'vue';
 import { PlusIcon } from '@heroicons/vue/outline';
+import { pushTender, fetchTenders } from '@/api/index';
 import VInput from '@/components/VInput.vue';
 import VSelect from '@/components/VSelect.vue';
 import VButton from '@/components/VButton.vue';
@@ -82,10 +83,16 @@ export default {
       metric: '',
       value: '',
     });
+    const submit = async () => {
+      await pushTender(product);
+      await fetchTenders();
+    };
+
     return {
       categories,
       product,
       addDetail,
+      submit,
     };
   },
 };
